@@ -2,20 +2,11 @@ import logging
 import time
 import json
 import random
-import httpx
-from celery import Celery
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional
 
-# 配置Celery
-celery_app = Celery('tasks', broker='redis://localhost:6379/0')
-celery_app.conf.update(
-    result_backend='redis://localhost:6379/0',
-    task_serializer='json',
-    accept_content=['json'],
-    result_serializer='json',
-    timezone='Asia/Shanghai',
-    enable_utc=True,
-)
+import httpx
+
+from . import celery_app
 
 # 配置日志
 logging.basicConfig(

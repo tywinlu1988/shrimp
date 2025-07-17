@@ -1,5 +1,8 @@
-# 启动脚本
 #!/bin/bash
+# Project setup script
+
+set -e
+
 if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
     cd frontend
     npm install
@@ -7,8 +10,8 @@ if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
     cd ..
 fi
 
-if [ -d "backend" ] && [ -f "backend/package.json" ]; then
-    cd backend
-    npm install
-    cd ..
+if [ -f "backend/requirements.txt" ]; then
+    pip install -r backend/requirements.txt
 fi
+
+echo "Setup completed"
