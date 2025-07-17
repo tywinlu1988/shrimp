@@ -1,0 +1,330 @@
+/**
+ * 拔草大虾 - 全局样式文件
+ * app.wxss
+ */
+
+/* 全局颜色变量 */
+page {
+  --primary-color: #6366f1; /* 主题色：蓝紫色 */
+  --primary-light: #818cf8; /* 主题色浅色 */
+  --primary-dark: #4f46e5; /* 主题色深色 */
+  --secondary-color: #f97316; /* 辅助色：橙色 */
+  --success-color: #10b981; /* 成功色：绿色 */
+  --warning-color: #f59e0b; /* 警告色：黄色 */
+  --danger-color: #ef4444; /* 危险色：红色 */
+  --text-primary: #1f2937; /* 主文本色 */
+  --text-secondary: #6b7280; /* 次要文本色 */
+  --background-color: #f9fafb; /* 背景色 */
+  --card-background: #ffffff; /* 卡片背景色 */
+  --border-color: #e5e7eb; /* 边框色 */
+  
+  /* 全局字体和背景设置 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 
+               'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  box-sizing: border-box;
+}
+
+/* 容器通用样式 */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+/* 卡片通用样式 */
+.card {
+  background-color: var(--card-background);
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  transition: all 0.3s ease;
+}
+
+.card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
+}
+
+/* 按钮通用样式 */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx 32rpx;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+  color: white;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2rpx solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+/* 输入框通用样式 */
+.input {
+  width: 100%;
+  height: 88rpx;
+  background-color: white;
+  border: 2rpx solid var(--border-color);
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2rpx rgba(99, 102, 241, 0.2);
+}
+
+/* 标题通用样式 */
+.title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 12rpx;
+}
+
+/* 文本通用样式 */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: 24rpx;
+}
+
+.text-md {
+  font-size: 28rpx;
+}
+
+.text-lg {
+  font-size: 32rpx;
+}
+
+.text-xl {
+  font-size: 36rpx;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+/* 布局辅助类 */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.mt-2 {
+  margin-top: 16rpx;
+}
+
+.mt-4 {
+  margin-top: 32rpx;
+}
+
+.mb-2 {
+  margin-bottom: 16rpx;
+}
+
+.mb-4 {
+  margin-bottom: 32rpx;
+}
+
+.p-2 {
+  padding: 16rpx;
+}
+
+.p-4 {
+  padding: 32rpx;
+}
+
+/* 动画类 */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}
+
+/* 标签云样式 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin: 16rpx 0;
+}
+
+.tag {
+  padding: 8rpx 20rpx;
+  border-radius: 100rpx;
+  font-size: 24rpx;
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+}
+
+.tag-positive {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.tag-negative {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+/* 分割线 */
+.divider {
+  height: 2rpx;
+  background-color: var(--border-color);
+  margin: 24rpx 0;
+  width: 100%;
+}
+
+/* 加载动画 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300rpx;
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  color: var(--text-secondary);
+  font-size: 28rpx;
+}
+
+/* 拔草指数仪表盘样式 */
+.gauge-container {
+  position: relative;
+  width: 300rpx;
+  height: 300rpx;
+  margin: 0 auto;
+}
+
+/* 报告卡片样式 */
+.report-card {
+  border-radius: 16rpx;
+  background-color: white;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+/* 评论样式 */
+.comment-item {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid var(--border-color);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* 分享按钮样式 */
+.share-btn {
+  position: fixed;
+  bottom: 60rpx;
+  right: 40rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+  box-shadow: 0 6rpx 16rpx rgba(99, 102, 241, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 50rpx;
+  transition: all 0.3s ease;
+}
+
+.share-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 3rpx 8rpx rgba(99, 102, 241, 0.2);
+}

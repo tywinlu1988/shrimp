@@ -1,0 +1,275 @@
+/* index.wxss - 拔草大虾首页样式 */
+
+/* 全局变量 */
+page {
+  --primary-color: #6366f1; /* 主色调：紫色 */
+  --secondary-color: #3b82f6; /* 次色调：蓝色 */
+  --accent-color: #ec4899; /* 强调色：粉色 */
+  --text-color: #1f2937; /* 主文本色 */
+  --light-text: #6b7280; /* 浅色文本 */
+  --background-color: #f9fafb; /* 背景色 */
+  --card-bg: #ffffff; /* 卡片背景色 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* 小阴影 */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* 中阴影 */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* 大阴影 */
+  
+  background-color: var(--background-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  height: 100%;
+}
+
+/* 容器布局 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 顶部标题区域 */
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 60rpx;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.logo-container {
+  margin-bottom: 30rpx;
+}
+
+.logo {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.slogan {
+  font-size: 32rpx;
+  color: var(--light-text);
+  margin-bottom: 20rpx;
+}
+
+/* 输入区域 */
+.input-section {
+  width: 100%;
+  margin-bottom: 60rpx;
+  animation: slideUp 0.6s ease-out;
+}
+
+.input-card {
+  background-color: var(--card-bg);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.input-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2rpx);
+}
+
+.input-label {
+  font-size: 28rpx;
+  color: var(--light-text);
+  margin-bottom: 16rpx;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.url-input {
+  background-color: #f3f4f6;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+  border: 2rpx solid #e5e7eb;
+  transition: border 0.3s ease;
+}
+
+.url-input:focus {
+  border-color: var(--primary-color);
+}
+
+.url-placeholder {
+  color: #9ca3af;
+}
+
+.paste-btn {
+  background-color: #e5e7eb;
+  color: var(--text-color);
+  border-radius: 8rpx;
+  padding: 16rpx 24rpx;
+  font-size: 26rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  transition: all 0.2s ease;
+}
+
+.paste-btn:active {
+  background-color: #d1d5db;
+}
+
+/* 主按钮 */
+.submit-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20rpx;
+  box-shadow: 0 4px 6px rgba(99, 102, 241, 0.25);
+  transition: all 0.3s ease;
+}
+
+.submit-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+}
+
+/* 功能介绍区域 */
+.features-section {
+  width: 100%;
+  margin-bottom: 40rpx;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  color: var(--text-color);
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--card-bg);
+  border-radius: 12rpx;
+  padding: 20rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  font-size: 26rpx;
+  color: var(--light-text);
+}
+
+/* 底部区域 */
+.footer {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--light-text);
+  margin-top: 40rpx;
+  padding: 20rpx 0;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20rpx);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 错误提示样式 */
+.error-tip {
+  color: #ef4444;
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  animation: shake 0.5s ease-in-out;
+  display: none;
+}
+
+.error-tip.show {
+  display: block;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5rpx);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5rpx);
+  }
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+  .input-card {
+    max-width: 650rpx;
+    margin: 0 auto;
+  }
+}
+
+/* 暗黑模式支持 */
+@media (prefers-color-scheme: dark) {
+  page {
+    --background-color: #1f2937;
+    --card-bg: #374151;
+    --text-color: #f9fafb;
+    --light-text: #d1d5db;
+  }
+  
+  .url-input {
+    background-color: #4b5563;
+    border-color: #6b7280;
+  }
+  
+  .paste-btn {
+    background-color: #4b5563;
+    color: #e5e7eb;
+  }
+}

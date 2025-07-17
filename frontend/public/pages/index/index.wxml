@@ -1,0 +1,77 @@
+<!-- index.wxml - 拔草大虾小程序首页 -->
+<view class="container">
+  <!-- 顶部标题区域 -->
+  <view class="header animate__animated animate__fadeIn">
+    <image class="logo" src="/assets/images/logo.png" mode="aspectFit"></image>
+    <view class="title">拔草大虾</view>
+    <view class="subtitle">您的专属AI购物决策军师</view>
+  </view>
+
+  <!-- 中间输入区域 -->
+  <view class="input-section animate__animated animate__fadeInUp">
+    <view class="input-tip">粘贴商品链接，快速获取真实评价</view>
+    <view class="input-wrapper">
+      <textarea 
+        class="url-input" 
+        placeholder="请粘贴淘宝/京东/拼多多等电商平台商品链接..." 
+        placeholder-class="placeholder"
+        bindinput="onInputChange"
+        value="{{productUrl}}"
+        maxlength="1000"
+        auto-height
+      ></textarea>
+      <view class="clear-btn" wx:if="{{productUrl}}" bindtap="clearInput">
+        <icon type="clear" size="20" color="#999"></icon>
+      </view>
+    </view>
+    
+    <!-- 示例链接提示 -->
+    <view class="example-tip" bindtap="useExampleUrl">
+      <text class="example-icon">💡</text>
+      <text class="example-text">没有链接？点击使用示例</text>
+    </view>
+  </view>
+
+  <!-- 底部按钮区域 -->
+  <view class="button-section animate__animated animate__fadeInUp">
+    <button 
+      class="analyze-btn {{productUrl ? '' : 'disabled'}}" 
+      bindtap="startAnalyze"
+      disabled="{{!productUrl || isLoading}}"
+    >
+      <view class="btn-content">
+        <image wx:if="{{isLoading}}" class="loading-icon" src="/assets/images/loading.gif" mode="aspectFit"></image>
+        <text>{{isLoading ? '分析中...' : '开始拔草'}}</text>
+      </view>
+    </button>
+    
+    <!-- 使用次数提示 -->
+    <view class="usage-tip">
+      <text>今日免费分析次数：{{remainingQuota}}/{{totalQuota}}</text>
+    </view>
+  </view>
+
+  <!-- 底部介绍区域 -->
+  <view class="footer animate__animated animate__fadeIn">
+    <view class="slogan">"冲动前，先问拔草大虾"</view>
+    <view class="features">
+      <view class="feature-item">
+        <text class="feature-icon">🔍</text>
+        <text class="feature-text">聚合全网评价</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">🤖</text>
+        <text class="feature-text">AI智能分析</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">💰</text>
+        <text class="feature-text">避坑省钱省心</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 错误提示弹窗 -->
+  <view class="error-toast {{showError ? 'show' : ''}}" wx:if="{{errorMessage}}">
+    <text>{{errorMessage}}</text>
+  </view>
+</view>

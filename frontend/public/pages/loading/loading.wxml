@@ -1,0 +1,49 @@
+<!-- loading.wxml - 拔草大虾分析进度页面 -->
+<view class="loading-container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <text class="title">拔草大虾</text>
+    <text class="subtitle">正在为您分析商品评价...</text>
+  </view>
+
+  <!-- 中间动画区域 -->
+  <view class="animation-container">
+    <!-- 拔草虾动画 -->
+    <view class="shrimp-animation">
+      <image class="shrimp-image animate__animated animate__bounce animate__infinite" src="/assets/images/shrimp.png" mode="aspectFit"></image>
+      <image class="grass-image" src="/assets/images/grass.png" mode="aspectFit"></image>
+    </view>
+
+    <!-- 进度提示 -->
+    <view class="progress-container">
+      <progress percent="{{progressPercent}}" active color="#6366f1" stroke-width="4" />
+      <text class="progress-text">{{progressText}}</text>
+    </view>
+  </view>
+
+  <!-- 分析步骤提示 -->
+  <view class="steps-container">
+    <view class="step {{currentStep >= 1 ? 'active' : ''}}">
+      <view class="step-icon">1</view>
+      <text class="step-text">解析链接</text>
+    </view>
+    <view class="step {{currentStep >= 2 ? 'active' : ''}}">
+      <view class="step-icon">2</view>
+      <text class="step-text">抓取评论</text>
+    </view>
+    <view class="step {{currentStep >= 3 ? 'active' : ''}}">
+      <view class="step-icon">3</view>
+      <text class="step-text">AI分析中</text>
+    </view>
+    <view class="step {{currentStep >= 4 ? 'active' : ''}}">
+      <view class="step-icon">4</view>
+      <text class="step-text">生成报告</text>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="footer">
+    <text class="tip">首次分析可能需要较长时间，请耐心等待...</text>
+    <button class="cancel-btn" bindtap="cancelAnalysis">取消分析</button>
+  </view>
+</view>

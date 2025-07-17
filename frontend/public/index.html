@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拔草大虾 - 您的专属AI购物决策军师</title>
+    <meta name="description" content="拔草大虾帮助您在购物前快速识别商品优缺点，避免冲动消费，做出更理性的购物决策。">
+    <meta name="keywords" content="拔草,购物决策,AI分析,商品评价,避坑指南">
+    
+    <!-- 引入TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- 引入Animate.css -->
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+    <!-- 引入Font Awesome图标 -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
+    <style>
+        /* 渐变背景 */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        
+        /* 虾动画 */
+        .shrimp-animation {
+            animation: bounce 2s infinite;
+        }
+        
+        /* 卡片悬浮效果 */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #6366f1;
+            border-radius: 10px;
+        }
+        
+        /* 防止内容溢出 */
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* 加载动画 */
+        .loading-spinner {
+            border: 3px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #6366f1;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 页面容器 -->
+    <div id="app" class="flex flex-col min-h-screen">
+        <!-- 顶部导航栏 -->
+        <header class="bg-gradient-primary text-white shadow-md">
+            <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="text-2xl font-bold mr-2">🦐</div>
+                    <h1 class="text-xl font-bold">拔草大虾</h1>
+                </div>
+                <div>
+                    <button id="shareBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-full text-sm transition">
+                        <i class="fas fa-share-alt mr-1"></i>分享
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 主内容区 -->
+        <main class="flex-grow container mx-auto px-4 py-6">
+            <!-- 内容将由小程序动态加载 -->
+            <div id="loading" class="flex flex-col items-center justify-center py-20">
+                <div class="loading-spinner mb-4"></div>
+                <p class="text-gray-500">正在加载小程序...</p>
+            </div>
+        </main>
+        
+        <!-- 底部导航 -->
+        <footer class="bg-white border-t border-gray-200 py-3">
+            <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+                <p>© 2025 拔草大虾 - 您的专属AI购物决策军师</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 错误提示模态框 -->
+    <div id="errorModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-red-600">
+                    <i class="fas fa-exclamation-circle mr-2"></i>出错了
+                </h3>
+                <button id="closeErrorBtn" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p id="errorMessage" class="text-gray-700 mb-4">加载失败，请稍后再试。</p>
+            <div class="flex justify-end">
+                <button id="retryBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
+                    重试
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 小程序初始化脚本 -->
+    <script>
+        // 全局错误处理
+        window.onerror = function(message, source, lineno, colno, error) {
+            showError('程序运行出错: ' + message);
+            console.error('全局错误:', {message, source, lineno, colno, error});
+            
+            // 上报错误
+            reportError('global_error', {message, source, lineno, colno});
+            
+            return true; // 防止默认错误处理
+        };
+        
+        // 处理Promise错误
+        window.addEventListener('unhandledrejection', function(event) {
+            showError('网络请求失败，请检查网络连接');
+            console.error('Promise错误:', event.reason);
+            
+            // 上报错误
+            reportError('promise_error', {message: event.reason?.message || '未知Promise错误'});
+        });
+        
+        // 显示错误模态框
+        function showError(message) {
+            const errorModal = document.getElementById('errorModal');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (errorModal && errorMessage) {
+                errorMessage.textContent = message || '发生未知错误，请稍后再试';
+                errorModal.classList.remove('hidden');
+                errorModal.classList.add('animate__animated', 'animate__fadeIn');
+            }
+        }
+        
+        // 上报错误到服务器
+        function reportError(type, data) {
+            // 确保每种类型的错误只上报一次
+            if (window.reportedErrors && window.reportedErrors[type]) {
+                return;
+            }
+            
+            // 初始化已报告错误对象
+            if (!window.reportedErrors) {
+                window.reportedErrors = {};
+            }
+            
+            // 标记此类型错误已报告
+            window.reportedErrors[type] = true;
+            
+            // 发送错误报告
+            fetch('/api/logs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: type,
+                    error: data,
+                    url: window.location.href,
+                    time: new Date().toISOString()
+                })
+            }).catch(function(err) {
+                console.error('错误上报失败:', err);
+            });
+        }
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 关闭错误模态框
+            const closeErrorBtn = document.getElementById('closeErrorBtn');
+            const errorModal = document.getElementById('errorModal');
+            
+            if (closeErrorBtn && errorModal) {
+                closeErrorBtn.addEventListener('click', function() {
+                    errorModal.classList.add('animate__animated', 'animate__fadeOut');
+                    setTimeout(function() {
+                        errorModal.classList.add('hidden');
+                        errorModal.classList.remove('animate__animated', 'animate__fadeOut');
+                    }, 500);
+                });
+            }
+            
+            // 重试按钮
+            const retryBtn = document.getElementById('retryBtn');
+            if (retryBtn) {
+                retryBtn.addEventListener('click', function() {
+                    window.location.reload();
+                });
+            }
+            
+            // 分享按钮
+            const shareBtn = document.getElementById('shareBtn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: '拔草大虾 - 您的专属AI购物决策军师',
+                            text: '帮你避开购物陷阱，做出更理性的消费决策！',
+                            url: window.location.href
+                        }).catch(function(err) {
+                            console.error('分享失败:', err);
+                        });
+                    } else {
+                        alert('复制链接分享给好友吧！');
+                    }
+                });
+            }
+            
+            // 模拟小程序加载
+            setTimeout(function() {
+                const loadingElement = document.getElementById('loading');
+                if (loadingElement) {
+                    loadingElement.innerHTML = `
+                        <div class="text-center max-w-md mx-auto">
+                            <div class="text-6xl mb-6 animate__animated animate__bounce animate__infinite">🦐</div>
+                            <h2 class="text-2xl font-bold text-indigo-600 mb-4">拔草大虾</h2>
+                            <p class="text-gray-600 mb-8">您的专属AI购物决策军师</p>
+                            
+                            <div class="bg-white rounded-lg shadow-lg p-6 hover-card mb-8">
+                                <div class="relative">
+                                    <input type="text" placeholder="粘贴商品链接..." class="w-full border border-gray-300 rounded-lg pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-indigo-600 text-white rounded-md px-3 py-1 hover:bg-indigo-700 transition">
+                                        开始拔草
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-500 text-sm">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                支持淘宝、京东、拼多多等主流电商平台
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

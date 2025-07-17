@@ -1,0 +1,24 @@
+2025-07-17 19:33:39,663 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9044
+ * Running on http://10.10.0.2:9044
+2025-07-17 19:33:39,663 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-17 19:33:39,663 - werkzeug - INFO -  * Restarting with stat
+2025-07-17 19:33:39,914 - werkzeug - WARNING -  * Debugger is active!
+2025-07-17 19:33:39,914 - werkzeug - INFO -  * Debugger PIN: 919-653-143
+2025-07-17 19:35:40,374 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://10.13.194.23:3000
+2025-07-17 19:35:40,374 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-17 19:35:40,375 - werkzeug - INFO -  * Restarting with stat
+2025-07-17 19:35:40,552 - werkzeug - WARNING -  * Debugger is active!
+2025-07-17 19:35:40,553 - werkzeug - INFO -  * Debugger PIN: 487-594-545
+2025-07-17 19:35:44,007 - werkzeug - INFO - 127.0.0.1 - - [17/Jul/2025 19:35:44] "GET / HTTP/1.1" 200 -
+2025-07-17 19:35:45,057 - werkzeug - INFO - 10.13.44.81 - - [17/Jul/2025 19:35:45] "GET / HTTP/1.1" 200 -
+2025-07-17 19:35:46,853 - werkzeug - INFO - 10.13.44.81 - - [17/Jul/2025 19:35:46] "GET /?t=1752752145383 HTTP/1.1" 200 -
+2025-07-17 20:23:59,688 - werkzeug - INFO - 10.13.176.13 - - [17/Jul/2025 20:23:59] "GET / HTTP/1.1" 200 -
+2025-07-17 20:24:18,393 - werkzeug - INFO - 10.13.176.13 - - [17/Jul/2025 20:24:18] "GET / HTTP/1.1" 200 -
+2025-07-17 20:24:32,724 - werkzeug - INFO - 10.13.176.13 - - [17/Jul/2025 20:24:32] "GET /?t=1752755072430 HTTP/1.1" 200 -
+2025-07-17 20:24:38,437 - werkzeug - INFO - 10.13.44.81 - - [17/Jul/2025 20:24:38] "GET /?t=1752755078156 HTTP/1.1" 200 -
+2025-07-17 20:24:39,209 - werkzeug - INFO - 10.13.176.13 - - [17/Jul/2025 20:24:39] "GET /?t=1752755078872 HTTP/1.1" 200 -

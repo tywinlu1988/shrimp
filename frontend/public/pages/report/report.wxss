@@ -1,0 +1,437 @@
+/**
+ * 拔草大虾 - 报告页样式文件
+ * pages/report/report.wxss
+ */
+
+/* 报告页容器 */
+.report-container {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+/* 报告头部区域 */
+.report-header {
+  margin-bottom: 40rpx;
+}
+
+/* 商品信息卡片 */
+.product-card {
+  display: flex;
+  padding: 24rpx;
+  background-color: var(--card-background);
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  margin-bottom: 30rpx;
+}
+
+.product-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.product-info {
+  margin-left: 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-price {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.product-platform {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  padding: 4rpx 12rpx;
+  background-color: rgba(107, 114, 128, 0.1);
+  border-radius: 100rpx;
+  display: inline-block;
+  margin-top: 8rpx;
+}
+
+/* 拔草指数区域 */
+.score-section {
+  background-color: var(--card-background);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.score-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  color: var(--text-primary);
+}
+
+.gauge-wrapper {
+  position: relative;
+  width: 300rpx;
+  height: 300rpx;
+  margin: 0 auto 20rpx;
+}
+
+.gauge-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.gauge-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 1.5s ease-in-out;
+}
+
+.score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 72rpx;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.score-label {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-top: -10rpx;
+}
+
+/* 一句话总结 */
+.summary {
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 16rpx 30rpx;
+  margin: 20rpx 0;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* 优缺点区域 */
+.pros-cons-section {
+  margin-bottom: 30rpx;
+}
+
+.section-card {
+  background-color: var(--card-background);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.section-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.pros-title {
+  color: var(--success-color);
+}
+
+.cons-title {
+  color: var(--danger-color);
+}
+
+/* 标签云样式 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin: 16rpx 0 24rpx;
+}
+
+.tag-positive {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tag-negative {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 评价摘要列表 */
+.review-list {
+  margin-top: 16rpx;
+}
+
+.review-item {
+  padding: 16rpx;
+  border-radius: 12rpx;
+  background-color: rgba(249, 250, 251, 0.6);
+  margin-bottom: 16rpx;
+  border-left: 8rpx solid transparent;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.review-item-pro {
+  border-left-color: var(--success-color);
+}
+
+.review-item-con {
+  border-left-color: var(--danger-color);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.review-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+  color: var(--text-primary);
+}
+
+.review-content {
+  font-size: 26rpx;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 8rpx;
+}
+
+.review-source {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* 全网声音区域 (非MVP功能) */
+.web-echo-section {
+  margin-bottom: 30rpx;
+}
+
+.echo-item {
+  padding: 20rpx;
+  border-radius: 12rpx;
+  background-color: rgba(249, 250, 251, 0.6);
+  margin-bottom: 16rpx;
+  border-left: 8rpx solid var(--primary-light);
+}
+
+.echo-source {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 8rpx;
+}
+
+.echo-content {
+  font-size: 26rpx;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.view-original {
+  font-size: 24rpx;
+  color: var(--primary-color);
+  text-align: right;
+  margin-top: 8rpx;
+  text-decoration: underline;
+}
+
+/* AI购买建议区域 */
+.ai-advice-section {
+  background-color: var(--card-background);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.ai-advice-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.ai-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+}
+
+.ai-advice-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.ai-advice-content {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding: 16rpx;
+  background-color: rgba(99, 102, 241, 0.05);
+  border-radius: 12rpx;
+}
+
+/* 分享按钮 */
+.share-container {
+  position: fixed;
+  bottom: 60rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+}
+
+.share-button {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+  color: white;
+  font-size: 32rpx;
+  font-weight: 600;
+  padding: 20rpx 40rpx;
+  border-radius: 100rpx;
+  box-shadow: 0 6rpx 16rpx rgba(99, 102, 241, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx;
+}
+
+/* 底部区域 */
+.footer {
+  text-align: center;
+  padding: 40rpx 0 100rpx;
+  color: var(--text-secondary);
+  font-size: 24rpx;
+}
+
+.footer-logo {
+  width: 200rpx;
+  height: 60rpx;
+  margin: 0 auto 16rpx;
+}
+
+/* 加载状态 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--background-color);
+}
+
+.loading-animation {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+}
+
+.loading-text {
+  font-size: 32rpx;
+  color: var(--text-secondary);
+  margin-bottom: 16rpx;
+}
+
+/* 错误状态 */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  padding: 0 40rpx;
+  text-align: center;
+}
+
+.error-icon {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 30rpx;
+}
+
+.error-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.error-message {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  margin-bottom: 40rpx;
+  line-height: 1.5;
+}
+
+.retry-button {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 32rpx;
+  padding: 20rpx 60rpx;
+  border-radius: 12rpx;
+}
