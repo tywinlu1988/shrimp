@@ -5,9 +5,12 @@ import sys
 import os
 import time
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any
+
 import httpx
-from tasks import analyze_product, get_task_status
+
+from .tasks import analyze_product, get_task_status
+from .config import STATIC_FOLDER
 
 # 定义全局logging
 logging.basicConfig(
@@ -24,8 +27,8 @@ def global_exception_handler(exctype, value, traceback):
     logging.critical("未捕获的全局异常", exc_info=(exctype, value, traceback))
 sys.excepthook = global_exception_handler
 
-# 严格按照如下方式配置静态资源
-app = Flask(__name__, static_folder='../frontend/public', static_url_path='/')
+# 静态资源目录
+app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path='/')
 CORS(app)
 
 # 内存存储任务状态
